@@ -1,0 +1,56 @@
+name: IndexNow
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for GitHub Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sha="${GITHUB_SHA}"
+          for i in $(seq 1 60); do
+            api_ok=0
+            if json=$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" 2>/dev/null); then
+              status=$(printf '%s' "$json" | jq -r '.status')
+              commit=$(printf '%s' "$json" | jq -r '.commit')
+              echo "pages status=${status} commit=${commit}"
+              if [ "$status" = "errored" ] && [ "$commit" = "$sha" ]; then
+                echo "Pages build failed"
+                exit 1
+              fi
+              if [ "$status" = "built" ] && [ "$commit" = "$sha" ]; then
+                api_ok=1
+              fi
+            else
+              echo "pages API not ready"
+            fi
+            code=$(curl -sS -o /dev/null -w "%{http_code}" "https://rustonroad.github.io/lychee.toml")
+            echo "lychee.toml http ${code}"
+            if [ "$api_ok" = "1" ] && [ "$code" = "200" ]; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Timed out waiting for Pages"
+          exit 1
+
+      - name: Submit sitemap URLs
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: python3 .github/indexnow_submit.py
