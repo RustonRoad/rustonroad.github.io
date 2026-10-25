@@ -1,0 +1,30 @@
+name: Link check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: true
+          args: >-
+            --config lychee.toml
+            --no-progress
+            --root-dir "${{ github.workspace }}"
+            --remap "https://rustonroad\.github\.io file://${{ github.workspace }}"
+            --extensions html
+            "./**/*.html"
