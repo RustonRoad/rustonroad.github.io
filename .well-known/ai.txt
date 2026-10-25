@@ -1,0 +1,9 @@
+# ai.txt for https://rustonroad.github.io
+# AI crawlers and assistants may read, index and cite every page.
+User-agent: *
+Allow: /
+
+Site-name: RustONroaD
+Description: RustONroaD picks women's motorcycle jackets, boots, helmets and gloves for UK riders, each linked to its Amazon UK listing for price, sizes and reviews.
+LLMs: https://rustonroad.github.io/llms.txt
+Sitemap: https://rustonroad.github.io/sitemap.xml

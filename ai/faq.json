@@ -1,0 +1,20 @@
+{
+  "faqs": [
+    {
+      "question": "What is RustONroaD?",
+      "answer": "RustONroaD is a UK buyer guide site for women's motorcycle gear. It picks jackets, boots, helmets, gloves and winter riding kit that hold up on the road and still look right off the bike."
+    },
+    {
+      "question": "How do the links on RustONroaD work?",
+      "answer": "Every pick links to its Amazon UK listing so you can check the live price, sizes and reviews before you buy. As an Amazon Associate RustONroaD earns from qualifying purchases, at no extra cost to you."
+    },
+    {
+      "question": "Why do the guides not show prices or star ratings?",
+      "answer": "Prices and ratings change daily. The guides use specs taken from the Amazon UK listing and send you to the listing for the current price and reviews."
+    },
+    {
+      "question": "Where else can I find RustONroaD?",
+      "answer": "RustONroaD is on Instagram and Pinterest, on lnk.bio at lnk.bio/Rustonroad, and has a RustONroaD Storefront on Amazon UK."
+    }
+  ]
+}
