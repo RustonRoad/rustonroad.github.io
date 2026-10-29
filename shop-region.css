@@ -1,0 +1,14 @@
+/* Shop region links. UK stays first in the HTML. US visitors get a highlight. */
+.ror-shops{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;max-width:100%;vertical-align:top}
+.card .in>.ror-shops{margin-top:auto}
+.ror-shops>.btn{margin-top:0}
+.look .ror-shops{display:flex;width:100%;align-items:stretch}
+.look .ror-shops>.btn{display:block;width:100%;margin:6px 0}
+figure>.ror-shops{display:flex;width:100%;align-items:stretch}
+figure>.ror-shops>.shot{display:block}
+.ror-media{display:flex;width:100%}
+.ror-media>a{display:block;width:100%}
+.ror-media img{width:100%;height:auto;display:block}
+.ror-us{font-size:13px;font-weight:700;align-self:flex-start}
+.ror-shops.us-first:not(.ror-media){flex-direction:column-reverse}
+.ror-shops.us-first .ror-us{align-self:stretch;background:#f0b35a;color:#111;text-decoration:none;text-align:center;border-radius:8px;padding:10px 14px}
